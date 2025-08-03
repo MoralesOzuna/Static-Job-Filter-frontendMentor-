@@ -1,0 +1,18 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.banner{
+    background-image: url('../images/bg-header-mobile.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-color: v.$green400;
+    
+    height: 15rem;
+    width: 100%;
+
+    @include m.desktop{
+        background-image: url('../images/bg-header-desktop.svg');
+    }
+    
+}  

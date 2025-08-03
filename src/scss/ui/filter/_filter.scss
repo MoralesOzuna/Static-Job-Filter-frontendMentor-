@@ -1,0 +1,73 @@
+@use '../../base/variables' as v;
+@use '../../base/mixins' as m;
+
+.filters{
+    background-color: #fff;
+    border-radius: .5rem;
+    margin-top: -3rem;
+    box-shadow: 0px 13px 41px 0px rgba(44,58,58,0.28);
+    -webkit-box-shadow: 0px 13px 41px 0px rgba(44,58,58,0.28);
+    -moz-box-shadow: 0px 13px 41px 0px rgba(44,58,58,0.28);
+    margin-bottom: 5rem;
+    display: none;
+    padding: 1rem;
+    grid-template-columns: 75% 25%;
+    gap: 1rem;
+
+ 
+
+    .clear{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        color: v.$gray400;
+        font-weight: v.$font700;
+        
+
+        .clear__text{
+            margin: 0;
+        }
+    }
+}
+
+.filter{
+
+    color: v.$green400;
+    font-weight: v.$font700;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+
+    @include m.tablet{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    &__tag{
+        background-color: v.$green50;
+        border-radius: 1rem;
+        text-align: center;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 16rem;
+
+    }
+
+    &__tagContent{
+        margin-left: 2rem;
+        font-size: 1.6rem;
+    }
+
+    &__icon{
+   
+        color: #fff;
+        padding: 1.5rem;
+        background-color: v.$green400;
+        border-radius: 0 .5rem .5rem 0;
+     
+    }
+
+}

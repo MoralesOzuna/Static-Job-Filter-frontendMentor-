@@ -1,0 +1,23 @@
+@use 'variables' as v; 
+
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+    font-size: 62.5%; /* 1rem = 10px si el navegador tiene 16px por defecto */
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+body{
+    margin: 0;
+    background-color: v.$green50;
+    font-family:  "League Spartan", sans-serif;
+    font-size: 1.5rem;
+}
+
+.container{
+    width: 90%;
+    max-width: 120rem;
+    margin: 0 auto;
+}
