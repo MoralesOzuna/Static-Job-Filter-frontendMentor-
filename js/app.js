@@ -8,6 +8,7 @@ const content = document.querySelector('.content');
 const filtersDiv = document.querySelector('.filters');
 
 
+
 addEventListener('DOMContentLoaded', bringData);
 
 class AdminFilter{
@@ -41,7 +42,7 @@ class AdminFilter{
         filtersDiv.appendChild(filtersClear);
         filtersClear.appendChild(filtersClearText);
 
-        //Hacemos que sean elementos "P" a donde se asigne el texto
+        //Creamos el elemento tag que se muestra en el div de filtros
         this.tags.forEach( tag =>{
             const tagText = document.createElement('div');
             tagText.classList.add('filter__tag');
@@ -59,15 +60,24 @@ class AdminFilter{
             tagText.appendChild(tagTextText);
             tagText.appendChild(tagIcon);
 
-    
+            tagIcon.addEventListener('click', ()=>{
+        
+            this.delete(tagTextText);
+            
+            }) 
         })
 
         this.read();
+        
+        
           
+
         
     }
 
     read(){
+
+        //Creamos un elemento adicional en totalTags
        listObj.forEach(itemList =>{
 
         const tags = [...itemList.languages, ...itemList.tools, itemList.level, itemList.role];
@@ -75,7 +85,6 @@ class AdminFilter{
         /*Unimos a cada itemList el array Tags que contiene todos los tags con los que se pueden filtrar */
         itemList.totalTags = tags;
        })
-
        this.update();
 
         /* PASOS NECESARIOS PARA EL ARRAY
@@ -93,18 +102,9 @@ class AdminFilter{
             this.tags.every(tag=> list.totalTags.includes(tag))
         );
 
-        
-
-
         listObj = [...this.jobs];
-        console.log(listObj);
-
-
-        console.log(this.jobs);
-      /*   listObj = this.jobs; */
-        
-        
-
+    
+    
         removeContent();
         showHTML();
         assingEventsToTag();
@@ -112,8 +112,18 @@ class AdminFilter{
     }
 
   
-    delete(){
+    delete(text){
+    
 
+
+        this.tags = this.tags.filter(tag => tag != text.textContent);
+        text.parentElement.remove();
+        console.log(this.tags)
+        if(this.tags == ''){
+            document.querySelector('.filters').style.display = 'none';
+        }
+        this.update();
+        
     }
     
     clear(){
@@ -132,19 +142,6 @@ class AdminFilter{
            while(filter.firstChild){
             filter.removeChild(filter.lastChild);
            }
-
-           /* document.querySelector('.filter__tagContent').remove(); */
-
-
-           /* 
-           function removeContent(){
-    while(content.firstChild){
-        content.removeChild(content.lastChild);
-    }
-}
-           
-           
-           */
         } )
     }
 
@@ -162,7 +159,7 @@ const filtros = new AdminFilter();
     .then (data =>{ //usamos js para recorrrerlo
 
         originalList =  data;
-        listObj = [...originalList];
+        listObj = [...originalList]; /* Copias originalList pero en este caso si afecta listObj no afecta originalList contrario que si hago listObj = originalList */
         showHTML()
         const tagAttribute = document.querySelectorAll('.tag__attribute');
 
