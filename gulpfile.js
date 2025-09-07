@@ -1,6 +1,7 @@
 /* Extraemos dependencias */
 const { src, dest, watch, series, parallel} = require('gulp');
 
+
 /* CSS Y SASS */
 const sass = require('gulp-sass')(require('sass'));
 const postcss = require('gulp-postcss'); /* Esta dependencia nos ayuda a hacer nuestro codigo compatible con todos los navegadores */
@@ -65,6 +66,8 @@ exports.imagenes = imagenes;
 exports.versionWebp = versionWebp;
 exports.versionAvif = versionAvif;
 exports.default = series(imagenes,  versionWebp, versionAvif, css, dev)
+exports.build = series(imagenes, versionWebp, versionAvif, css);
+
 
 /* Series - ejecuta una primer tarea y hasta que finaliza, inicia la siguiente
 parallel - todas inician al mismo tiempo*/
